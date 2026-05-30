@@ -8,4 +8,4 @@ project(toolzpp)
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
-add_executable(run main_example.cpp)
+add_executable(run main.cpp)

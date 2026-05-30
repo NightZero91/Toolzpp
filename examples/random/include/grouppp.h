@@ -1,7 +1,13 @@
 #ifndef GROUPPP_H
 #define GROUPPP_H
-//@--grouppp--toolzpp
-//260515
+/**
+ * @file grouppp.h
+ * @date 2026-05-15
+ * @author NightZero91
+ * @brief 一个存有多种属性的组，底层是unordered_map
+ * @note 欢迎使用者对该文件提出任何建议
+ * @warning 多线程请确保加锁
+ */
 #include <string>
 #include <vector>
 #include <unordered_map>
@@ -9,16 +15,22 @@
 
 namespace tlz
 {
+    /**
+    *@brief bool特化的逻辑检查方式(与，或，反)
+    */
     enum CheckState
     {
         CS_AND,
         CS_OR,
-        CS_NOT
+        CS_FILP
     };
 
     namespace group
     {
-        //basic group class
+        /**
+        *@brief 一个id对应一个属性
+        *@tparam V：属性类型
+        */
         template<class V>
         class Group
         {
@@ -27,7 +39,11 @@ namespace tlz
         public:
             Group(){};
             ~Group(){};
-            //添加组元素
+            /**
+            *@brief 添加属性
+            *@param id：属性id
+            *@param value：属性值
+            */
             void add(const std::string &id, V value)
             {
                 if (data.find(id) != data.end())
@@ -36,7 +52,12 @@ namespace tlz
                 }
                 data[id] = value;
             }
-            //重设对应的组元素
+            /**
+            *@brief 重设已有属性
+            *@param id：属性id
+            *@param value：属性值
+            *@note 找不到抛异常
+            */
             void reset(const std::string &id, V value)
             {
                 if (data.find(id) == data.end())
@@ -45,24 +66,34 @@ namespace tlz
                 }
                 data[id] = value;
             }
-            //大小
-            size_t size() const
+            /**
+            *@brief 获取group大小
+            *@return data的size
+            */
+            size_t size() const noexcept
             {
                 return data.size();
             }
-            //重设所有的组元素
-            void set_all(V value)
+            /**
+            *@brief 设置所有属性为一个值
+            *@param value：值
+            */
+            void set_all(V value) noexcept
             {
                 if (data.empty())
                 {
                     return;
                 }
-                for (auto p = data.begin(); p != data.end(); p++)
+                for (auto p = data.begin(); p != data.end(); ++p)
                 {
-                    (*p).second = value;
+                    p->second = value;
                 }
             }
-            //获取对应的组元素
+            /**
+            *@brief 获取某个id的值
+            *@param id：属性id
+            *@return 对应属性值
+            */
             V get(const std::string &id) const
             {
                 if (data.find(id) == data.end())
@@ -71,12 +102,18 @@ namespace tlz
                 }
                 return data[id];
             }
-            //判断是否为空
+            /**
+            *@brief 判断组是否为空
+            *@return data.empty返回的bool
+            */
             bool is_empty() const
             {
                 return data.empty();
             }
-            //获取id
+            /**
+            *@brief 获取所有id
+            *@return 一个vector，装有所有id
+            */
             std::vector<std::string> get_id() const
             {
                 std::vector<std::string> vec;
@@ -85,10 +122,25 @@ namespace tlz
                 {
                    vec.push_back(k.first); 
                 }
-                return std::move(vec);
+                return vec;
+            }
+            /**
+            *@brief 删除对应属性
+            *@param id：属性id
+            */
+            void remove(const std::string &id)
+            {
+                auto it = data.find(id);
+                if (it != data.end())
+                {
+                    data.erase(it);
+                }
+                else throw std::runtime_error("Cannot find the ID.");
             }
         };
-        //特化类
+        /**
+        *@brief group的bool特化，管理大量bool
+        */
         template<>
         class Group<bool>
         {
@@ -97,7 +149,11 @@ namespace tlz
         public:
             Group(){};
             ~Group(){};
-            //添加组元素
+            /**
+            *@brief 添加属性
+            *@param id：属性id
+            *@param condition：true/false
+            */
             void add(const std::string &id, bool condition)
             {
                 if (conditions.find(id) != conditions.end())
@@ -106,7 +162,12 @@ namespace tlz
                 }
                 conditions[id] = condition;
             }
-            //重设对应的组元素
+            /**
+            *@brief 重设已有属性
+            *@param id：属性id
+            *@param condition：true/false
+            *@note 找不到抛异常
+            */
             void reset(const std::string &id, bool condition)
             {
                 if (conditions.find(id) == conditions.end())
@@ -115,19 +176,30 @@ namespace tlz
                 }
                 conditions[id] = condition;
             }
-            //重设所有的组元素
+            /**
+            *@brief 设置所有属性为一个值
+            *@param condition：值
+            */
             void set_all(bool condition)
             {
                 if (conditions.empty())
                 {
                     return;
                 }
-                for (auto p = conditions.begin(); p != conditions.end(); p++)
+                /**
+                *@note 使用前缀自增而不是后缀自增，爱来自B站用户(由衷地，发自内心地感谢你)
+                */
+                for (auto p = conditions.begin(); p != conditions.end(); ++p)
                 {
-                    (*p).second = condition;
+                    //fixed: use p-> better
+                    p->second = condition;
                 }
             }
-            //检查所有组元素是否符合要求
+            /**
+            *@brief 检查所有属性是否符合条件
+            *@param cheak_state：检查方式（与，或，非）
+            *@return 返回一个bool结果
+            */
             bool check_all(CheckState check_state) const
             {
                 if (check_state == CheckState::CS_AND)
@@ -136,9 +208,9 @@ namespace tlz
                     {
                         return true;
                     }
-                    for (auto p = conditions.begin(); p != conditions.end(); p++)
+                    for (auto p = conditions.begin(); p != conditions.end(); ++p)
                     {
-                        if (!(*p).second)
+                        if (!p->second)
                             return false;
                     }
                     return true;
@@ -149,9 +221,9 @@ namespace tlz
                     {
                         return true;
                     }
-                    for (auto p = conditions.begin(); p != conditions.end(); p++)
+                    for (auto p = conditions.begin(); p != conditions.end(); ++p)
                     {
-                        if ((*p).second)
+                        if (p->second)
                             return true;
                     }
                     return false;
@@ -162,15 +234,19 @@ namespace tlz
                     {
                         return false;
                     }
-                    for (auto p = conditions.begin(); p != conditions.end(); p++)
+                    for (auto p = conditions.begin(); p != conditions.end(); ++p)
                     {
-                        if ((*p).second)
+                        if (p->second)
                             return false;
                     }
                     return true;       
                 }
             }
-            //检查对应组元素是否符合要求
+            /**
+            *@brief 检查单个属性是否符合条件
+            *@param id：属性id
+            *@return 返回一个bool结果
+            */
             bool check(const std::string &id)
             {
                 if (conditions.find(id) == conditions.end())
@@ -179,12 +255,18 @@ namespace tlz
                 }
                 return conditions[id];
             }
-            //获取大小
-            size_t size() const 
+            /**
+            *@brief 获取group大小
+            *@return data的size
+            */
+            size_t size() const noexcept
             {
                 return conditions.size();
             }
-            //移除对应组元素
+            /**
+            *@brief 删除对应属性
+            *@param id：属性id
+            */
             void remove(const std::string &id)
             {
                 auto it = conditions.find(id);
@@ -192,14 +274,20 @@ namespace tlz
                 {
                     conditions.erase(it);
                 }
+                else throw std::runtime_error("Cannot find the ID.");
             }
-            //判断是否为空
+            /**
+            *@brief 检查conditions是否为空
+            *@return 返回conditions.empty()的bool结果
+            */
             bool is_empty() const
             {
                 return conditions.empty();
             }
-
-            //获取id
+            /**
+            *@brief 获取所有id
+            *@return 一个vector，装有所有id
+            */
             std::vector<std::string> get_id() const
             {
                 std::vector<std::string> vec;
@@ -210,7 +298,9 @@ namespace tlz
                 }
                 return vec;
             }
-
+            /**
+            *@brief 对所有条件取反
+            */
             void flip()
             {
                 for (auto &i : conditions)
@@ -219,7 +309,7 @@ namespace tlz
                 }
             }
         };
-        //设置别名
+
         using ConditionGroup = Group<bool>;
     }
 }

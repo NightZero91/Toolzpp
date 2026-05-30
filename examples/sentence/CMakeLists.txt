@@ -4,8 +4,8 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-project(toolzpp)
+project(toolzpp VERSION 0.2.0)
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
-add_executable(run main_example.cpp)
+add_executable(run main.cpp)

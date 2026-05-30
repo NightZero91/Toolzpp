@@ -6,6 +6,8 @@ A lightweight, header-only C++ utility library that provides commonly used funct
 
 * This is my first work: a lightweight, header-only C++ utility library that provides commonly used functions and data structures for daily development, such as string processing/formatting, random number generation, algorithms, etc. See the project for details. I have been learning C++ for 3 months, so there may be some poorly written parts. Feedback is welcome!
 
+* Welcome to the Toolzpp C++ library! We are very glad to see you using this library! This library already has 20 files and 2000 lines of code! Here, you can use C more conveniently. The Toolzpp source code has complete comments, and if you have any doubts, looking at the source code comments is the best choice.
+
 ## Features
 
 - **Header-only**: Just include the headers, no compilation needed
@@ -53,6 +55,9 @@ int main() {
 
 * This is my first work: a lightweight, header-only C++ utility library that provides commonly used functions and data structures for daily development. I am still learning, so there may be some poorly written parts, feedback is welcome!
 
+* 欢迎使用Toolzpp C++工具库!很高兴看见您使用这个库!本库已有20个文件，2000行代码!在这里，你能
+更快捷的使用C++，Toolzpp源代码拥有完善的注释，如果你有任何疑惑的地方，看源码注释便是最好选择
+
 ## 特性
 
 - **Header-only**：只需包含头文件，无需编译
@@ -92,23 +97,26 @@ int main() {
 ```
 ## 模块
 **模块列表**
-- 模块	说明
-- str	字符串处理：分割、大小写转换、格式化、去空格等
-- math	数学计算：求和、平均、中位数、众数、加权平均、函数包等
-- random	随机数生成：整数、浮点数、随机选择
-- algo	容器算法：map、filter、切片、包含检查
-- carray	C 数组工具：转 vector/array/map、查找、反转、打印
-- counter	计数器类：自增、自减、比较
-- tree	树结构：二叉树、单链表（使用 unique_ptr）
-- protector	写保护器：控制变量修改权限
-- output	输出重载：vector 流输出
-- vec	    向量结构体：Vector2/3/4（仅定义）
-- toolzpp 所有文件
-- progressbar 进度条
-- group   属性/条件组
-- stand   代表类
-- flager  状态类
-'''
+- "algopp.h"
+- "carraypp.h"
+- "counterpp.h"
+- "flagerpp.h"
+- "grouppp.h"
+- "loadingcircpp.h"
+- "loggerpp.h"
+- "mathpp.h"
+- "mempp.h"
+- "outputpp.h"
+- "progressbarpp.h"
+- "protectorpp.h"
+- "randompp.h"
+- "rangepp.h"
+- "sentencepp.h"
+- "standpp.h"
+- "strpp.h"
+- "treepp.h"
+- "vectorpp.h"
+
 ## 使用，编译
 **使用**
 - 直接包含，无需链接
