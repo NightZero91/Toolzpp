@@ -61,7 +61,7 @@ int main() {
 
 * This is my first work: a lightweight, header-only C++ utility library that provides commonly used functions and data structures for daily development. I am still learning, so there may be some poorly written parts, feedback is welcome!
 
-* 欢迎使用Toolzpp C++工具库!很高兴看见您使用这个库!本库已有22个文件，3800行代码!在这里，你能
+* 欢迎使用Toolzpp C++工具库!很高兴看见您使用这个库!本库已有21个文件，2200行代码!在这里，你能
 更快捷的使用C++，Toolzpp源代码拥有完善的注释，如果你有任何疑惑的地方，看源码注释便是最好选择
 
 ## 特性
@@ -110,7 +110,7 @@ int main() {
 ## 模块
 **模块列表**
 ![CodeExample](./codeimgs/code4.png) 
-* tips:charbuffer目前正在开发中
+* tip:charbuffer目前正在开发中
 
 ## 使用，编译
 **使用**

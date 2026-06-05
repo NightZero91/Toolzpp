@@ -51,7 +51,7 @@
 #define TOOLZPP_VERSION_PATCH 1
 #define TOOLZPP_VERSION "0.2.1"
 //是否为测试版
-#define TOOLZPP_BETA 1
+#define TOOLZPP_BETA 0
 //版本日期编号
 #define TOOLZPP_DATE 20260605
 //包含所有文件
