@@ -31,7 +31,7 @@ namespace tlz
         std::optional<T> safe_deref(const T* const ptr)
         {
             if (ptr == nullptr) return std::nullopt;
-            else return std::optional<T>(ptr);
+            else return std::optional<T>(*ptr);
         }
         
         /**

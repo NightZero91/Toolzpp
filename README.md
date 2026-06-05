@@ -6,7 +6,7 @@ A lightweight, header-only C++ utility library that provides commonly used funct
 
 * This is my first work: a lightweight, header-only C++ utility library that provides commonly used functions and data structures for daily development, such as string processing/formatting, random number generation, algorithms, etc. See the project for details. I have been learning C++ for 3 months, so there may be some poorly written parts. Feedback is welcome!
 
-* Welcome to the Toolzpp C++ library! We are very glad to see you using this library! This library already has 20 files and 2000 lines of code! Here, you can use C more conveniently. The Toolzpp source code has complete comments, and if you have any doubts, looking at the source code comments is the best choice.
+* Welcome to the Toolzpp C++ library! We are very glad to see you using this library! This library already has 21 files and 2200 lines of code! Here, you can use C more conveniently. The Toolzpp source code has complete comments, and if you have any doubts, looking at the source code comments is the best choice.
 
 ## Features
 
@@ -14,6 +14,7 @@ A lightweight, header-only C++ utility library that provides commonly used funct
 - **C++17** standard
 - **No third-party dependencies**
 - **Namespace isolation**: All features under `tlz::` namespace
+![CodeExample](./codeimgs/code3.png) 
 
 ## Quick Start
 
@@ -45,6 +46,11 @@ int main() {
     return 0;
 }
 ```
+
+### imgs
+![CodeExample](./codeimgs/code.png) 
+
+![CodeExample](./codeimgs/code1.png) 
 ----------------------------------------------------------------------------
 # toolzpp - C++ toollib
 
@@ -55,7 +61,7 @@ int main() {
 
 * This is my first work: a lightweight, header-only C++ utility library that provides commonly used functions and data structures for daily development. I am still learning, so there may be some poorly written parts, feedback is welcome!
 
-* 欢迎使用Toolzpp C++工具库!很高兴看见您使用这个库!本库已有20个文件，2000行代码!在这里，你能
+* 欢迎使用Toolzpp C++工具库!很高兴看见您使用这个库!本库已有22个文件，3800行代码!在这里，你能
 更快捷的使用C++，Toolzpp源代码拥有完善的注释，如果你有任何疑惑的地方，看源码注释便是最好选择
 
 ## 特性
@@ -95,27 +101,16 @@ int main() {
     return 0;
 }
 ```
+
+### 图片
+![CodeExample](./codeimgs/code.png) 
+
+![CodeExample](./codeimgs/code1.png) 
+
 ## 模块
 **模块列表**
-- "algopp.h"
-- "carraypp.h"
-- "counterpp.h"
-- "flagerpp.h"
-- "grouppp.h"
-- "loadingcircpp.h"
-- "loggerpp.h"
-- "mathpp.h"
-- "mempp.h"
-- "outputpp.h"
-- "progressbarpp.h"
-- "protectorpp.h"
-- "randompp.h"
-- "rangepp.h"
-- "sentencepp.h"
-- "standpp.h"
-- "strpp.h"
-- "treepp.h"
-- "vectorpp.h"
+![CodeExample](./codeimgs/code4.png) 
+* tips:charbuffer目前正在开发中
 
 ## 使用，编译
 **使用**

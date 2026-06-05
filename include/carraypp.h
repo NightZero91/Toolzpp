@@ -71,6 +71,7 @@ namespace tlz
         std::unordered_map<K, V> carray_to_unordered_map(const K* karr, const V* varr)
         {
             if (karr == nullptr || varr == nullptr) throw std::runtime_error("The array is a nullptr.");
+            if (Size == 0) throw std::runtime_error("Not support an empty array.");
             std::unordered_map<K, V> result{};
             result.reserve(Size);
             for (size_t i = 0; i < Size; ++i)
@@ -135,7 +136,7 @@ namespace tlz
         bool carray_contains(const T* const carray, const T& value)
         {
             if (carray == nullptr) throw std::runtime_error("The array is a nullptr.");
-            if (Size == 0) return false;
+            if (Size == 0) throw std::runtime_error("Not support an empty array.");
             auto it = std::find(carray, carray + Size, value);
             return it != carray + Size;
         }

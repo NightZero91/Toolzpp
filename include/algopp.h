@@ -42,15 +42,7 @@ namespace tlz
         template <class Func, class T>
         std::vector<T>& vector_filter(std::vector<T>& vec, Func&& function)
         {
-            for (auto p = vec.begin(); p != vec.end(); )
-            {
-                if (!function(*p))
-                {
-                    p = vec.erase(p);
-                    continue;
-                }
-                ++p;
-            }
+            vec.erase(std::remove_if(vec.begin(), vec.end(), [&](const T& item) { return !function(item); }), vec.end());
             return vec;
         }
         /**
@@ -106,7 +98,7 @@ namespace tlz
 
         for (size_t i = 0; i < count; ++i)
         {
-            for (auto j : vec)
+            for (const auto &j : vec)
             {
                 new_vec.push_back(j);
             }
@@ -134,7 +126,7 @@ namespace tlz
 
         for (size_t i = 0; i < count; ++i)
         {
-            for (auto j : vec)
+            for (const auto &j : vec)
             {
                 new_vec.push_back(j);
             }
@@ -156,10 +148,10 @@ namespace tlz
         std::vector<Type> new_vec;
         new_vec.reserve(new_size);
 
-        for (auto i : vec)
+        for (const auto &i : vec)
             new_vec.push_back(i);
 
-        for (auto j : other)
+        for (const auto &j : other)
             new_vec.push_back(j);
 
         return new_vec;
